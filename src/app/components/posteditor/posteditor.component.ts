@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { getPostByPostId } from '../../services/blog.service'
+import { updatePost } from '../../services/blog.service'
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    selector: 'post',
-    templateUrl: './post.component.html'
+    selector: 'posteditor',
+    templateUrl: './posteditor.component.html'
 })
 
-export class PostComponent {
+export class PosteditorComponent {
     post: {}
     constructor(
         private route: ActivatedRoute,
@@ -17,5 +18,7 @@ export class PostComponent {
         var id = this.route.snapshot.paramMap.get('id')
         this.post = getPostByPostId(id);
     }
-   
+    save() {
+        updatePost(this.post);
+    }
 }
